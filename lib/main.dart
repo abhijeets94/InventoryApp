@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'package:inventory/homescreen.dart';
+import 'package:inventory/routes.dart';
 
 void main() {
   runApp(const InventoryApp());
@@ -9,10 +13,10 @@ class InventoryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(child: Text("InventoryAppFirstBuild")),
-      ),
+    return MaterialApp(
+      theme: ThemeData(fontFamily: GoogleFonts.aboreto().fontFamily),
+      onGenerateRoute: route,
+      initialRoute: HomeScreen.routeName,
     );
   }
 }
