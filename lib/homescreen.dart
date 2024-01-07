@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventory/details_screen.dart';
+import 'package:inventory/tables.dart';
 import 'package:inventory/util/foods.dart';
 import 'package:inventory/util/widgets.dart';
 
@@ -42,7 +43,10 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.table_restaurant))
+          IconButton(
+              onPressed: () =>
+                  Navigator.pushNamed(context, TableScreen.routeName),
+              icon: const Icon(Icons.table_restaurant))
         ],
       ),
       body: GridView.builder(
@@ -59,29 +63,50 @@ class HomeScreen extends StatelessWidget {
                   arguments: {
                     "title": foods[index]["name"],
                     "image": foods[index]["img"],
+                    "heroTag": "detailImage$index",
+                    "count": foods[index]["count"],
                   }),
-              child: Hero(
-                tag: "detailImage",
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    children: [
-                      Image.asset(foods[index]["img"]),
-                      SizedBox(
-                        height: size.height * 0.01,
-                      ),
-                      Text(
-                        foods[index]["name"],
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        "remaining: ${foods[index]["count"]}",
-                        style: const TextStyle(fontWeight: FontWeight.w400),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Hero(
+                      tag: "detailImage$index",
+                      child: Container(
+                          height: size.width / 3,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: const [
+                              BoxShadow(
+                                offset: Offset(2, 2),
+                                blurRadius: 8,
+                                spreadRadius: 1.5,
+                              ),
+                            ],
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(foods[index]["img"]),
+                            ),
+                          )),
+                    ),
+                    // child: Image.asset()),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    Text(
+                      foods[index]["name"],
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      "remaining: ${foods[index]["count"]}",
+                      style: const TextStyle(fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ),
             );
