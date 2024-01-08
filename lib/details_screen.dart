@@ -6,10 +6,12 @@ class DetailsScreen extends StatelessWidget {
     super.key,
     required this.title,
     required this.image,
+    required this.heroTag,
   });
 
   final String title;
   final String image;
+  final String heroTag;
 
   static const String routeName = "/details-screen";
 
@@ -29,10 +31,15 @@ class DetailsScreen extends StatelessWidget {
           children: [
             Hero(
                 tag: "detailImage",
-                child: SizedBox(
+                child: Container(
                   height: size.height / 2,
-                  width: size.width / 2,
-                  child: Image.asset(image),
+                  width: size.width / 1.1,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            image,
+                          ))),
                 )),
           ],
         ),

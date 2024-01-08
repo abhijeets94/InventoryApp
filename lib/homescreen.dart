@@ -59,9 +59,10 @@ class HomeScreen extends StatelessWidget {
                   arguments: {
                     "title": foods[index]["name"],
                     "image": foods[index]["img"],
+                    "heroTag": "detailImage$index",
                   }),
               child: Hero(
-                tag: "detailImage",
+                tag: "detailImage$index",
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(

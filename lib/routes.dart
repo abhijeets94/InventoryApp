@@ -13,11 +13,13 @@ Route route(RouteSettings settings) {
 
       String title = args['title'];
       String image = args['image'];
+      String heroTag = args['heroTag'];
 
       return MaterialPageRoute(
         builder: (context) => DetailsScreen(
           image: image,
           title: title,
+          heroTag: heroTag,
         ),
       );
 
